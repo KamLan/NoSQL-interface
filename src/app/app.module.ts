@@ -4,17 +4,21 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { DbComponent } from './db/db.component';
+import { CardsComponent } from './cards/cards.component';
+import { CardsAComponent } from './cards-a/cards-a.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DbComponent
+    CardsComponent,
+    CardsAComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
