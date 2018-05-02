@@ -12,16 +12,20 @@ import 'rxjs/add/operator/map';
 export class AppComponent {
   title = 'My NoSQL interface';
   private albumApiUrl="http://localhost:3000/albums";
-  private artistApiUrl="http://localhost:3000/artistes";
+  private artistApiUrl="http://localhost:3000/artists";
   dataAlb: any = {};
   dataArt: any = {};
-  step = 1;
+  step = 2;
+
+  searchText = '';
 
   constructor(private http: HttpClient){
     this.getAlbums();
     this.getDataAlb();
     this.getArtists();
     this.getDataArt();
+    //this.sortAlbumName();
+    //this.sortArtistsName();
   }
 
   getDataAlb(){
@@ -50,7 +54,17 @@ export class AppComponent {
     this.step=section;
   }
 
+  sortAlbumName(){
+    this.dataAlb.sort();
+  }
+
+  sortArtistsName(){
+    this.dataArt.sort();
+  }
+
 }
+
+
 
 
 

@@ -6,14 +6,14 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"(click)="displayStep(1)">Home <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="#" (click)="displayStep(2)" >Albums</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" (click)="displayStep(3)" >Artistes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"(click)="displayStep(1)">Log in </a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -22,19 +22,51 @@
     </form>
   </div>
 </nav>
+<hr>
+<div class="filtermenu col-md-12 row col-centered">
+  <div class="offset-md-3 col-md-6" *ngIf="step==2"> 
+    <div>
+      <button (click)="sortAlbumName()">Titre</button>
+      <button (click)="sortAlbumName()">Artiste</button>
+      <button (click)="sortAlbumName()">Prix</button>
+      <button (click)="sortAlbumName()" >Année</button>
+      <button (click)="sortAlbumName()">Genre</button>
+    </div>
+  </div>
+  <div class="offset-md-3 col-md-6" *ngIf="step==3">
+    <div>
+      <button (click)="sortArtistName()">Artiste</button>
+      <button (click)="sortArtistName()">Genre</button>
+    </div>
+  </div>
+  <div class="offset-md-3 col-md-6" *ngIf="step==1">
+      <div class="col-md-12">
+          Login if you want to add, delete, modify albums
+      </div>
+      <hr>
+    <app-login></app-login>
+  </div>
+</div>
+<hr>
 <!--The content below is only a placeholder and can be replaced.-->
 
-<div class="col-md-12" *ngIf="step==1">
-  Welcome on this NoSQL API web interface
-</div>
-
 <div class="col-md-12" *ngIf="step==2">
+  <div>
+    <button>view</button>
+    <button>regular documents</button>
+  </div>
   <div>
     <app-cards [albums]="dataAlb"></app-cards>
   </div>
 </div>
 
 <div class="col-md-12" *ngIf="step==3">
-  <app-cards-a [artists]="dataArt"></app-cards-a>
+    <div>
+        <button>view</button>
+        <button>regular documents</button>
+    </div>
+    <div>
+        <app-cards-a [artists]="dataArt"></app-cards-a>
+    </div>
 </div>
 

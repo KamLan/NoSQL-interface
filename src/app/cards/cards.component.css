@@ -21,7 +21,7 @@
        margin: 0 2px 15px;
        padding: 15px;
        padding-bottom: 10px;
-       transition: opacity .4s ease-in-out;
+      transition: opacity .4s ease-in-out;
      display: inline-block;
      column-break-inside: avoid;
    }
@@ -51,10 +51,6 @@
      text-decoration: none; 
      transition: .4s color;
    }
-   
-   /* div#columns:hover figure:not(:hover) {
-       opacity: 0.4;
-   } */
    
    @media screen and (max-width: 750px) { 
      #columns { column-gap: 0px; }

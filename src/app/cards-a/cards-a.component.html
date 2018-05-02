@@ -1,7 +1,6 @@
 <div id="columns">
   <figure *ngFor="let artist of artists">
-  <img src="assets/img/covers/19.jpg">
+  <img src="assets/img/artists/{{artist.art_cover}}">
   <figcaption> {{artist.art_nom}} <br> Origin: {{artist.art_pays}} <br> Genre: {{artist.art_genre}}</figcaption>
-  
 	</figure>
 </div>
