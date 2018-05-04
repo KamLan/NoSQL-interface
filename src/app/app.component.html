@@ -27,7 +27,7 @@
   <div class="offset-md-3 col-md-6" *ngIf="step==2"> 
     <div>
       <button (click)="sortAlbumName()">Titre</button>
-      <button (click)="sortAlbumName()">Artiste</button>
+      <!-- <button (click)="sortAlbumName()">Artiste</button> -->
       <button (click)="sortAlbumPrice()">Prix</button>
       <button (click)="sortAlbumYear()" >Année</button>
       <button (click)="sortAlbumName()">Genre</button>
@@ -35,7 +35,7 @@
   </div>
   <div class="offset-md-3 col-md-6" *ngIf="step==3">
     <div>
-      <button (click)="sortArtistName()">Artiste</button>
+      <button (click)="sortArtistName()">Nom</button>
       <button (click)="sortArtistGenre()">Genre</button>
     </div>
   </div>
@@ -52,21 +52,13 @@
 
 <div class="col-md-12" *ngIf="step==2">
   <div>
-    <button>view</button>
-    <button>regular documents</button>
-  </div>
-  <div>
-    <app-cards [albums]="dataAlb"></app-cards>
+    <app-cards [albums]="dataAlb" [albumsV]="dataAlbV"></app-cards>
   </div>
 </div>
 
 <div class="col-md-12" *ngIf="step==3">
     <div>
-        <button>view</button>
-        <button>regular documents</button>
-    </div>
-    <div>
-        <app-cards-a [artists]="dataArt"></app-cards-a>
+        <app-cards-a [artists]="dataArt" [artistsV]="dataArtV"></app-cards-a>
     </div>
 </div>
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 //declare var require: any
 
 @Component({
@@ -12,12 +13,19 @@ import 'rxjs/add/operator/map';
 export class AppComponent {
   title = 'My NoSQL interface';
   private dataAlbBack: any;
+  private dataAlbVBack: any;
   private dataArtBack: any;
+  private dataArtVBack: any;
   private albumApiUrl="http://localhost:3000/albums";
   private artistApiUrl="http://localhost:3000/artists";
+  private albumViewApiUrl="http://localhost:3000/viewalb";
+  private artistViewApiUrl="http://localhost:3000/viewart";
   dataAlb: any = {};
+  dataAlbV: any = {};
   dataArt: any = {};
+  dataArtV: any = {};
   step = 2;
+  mech = 1;
 
   searchText = '';
 
@@ -26,16 +34,26 @@ export class AppComponent {
     this.getDataAlb();
     this.getArtists();
     this.getDataArt();
-    //this.sortAlbumName();
-    //this.sortArtistsName();
+    this.getAlbumsV();
+    this.getDataAlbV();
+    this.getArtistsV();
+    this.getDataArtV();
   }
 
   getDataAlb(){
     return this.http.get(this.albumApiUrl);
   }
 
+  getDataAlbV(){
+    return this.http.get(this.albumViewApiUrl); 
+  }
+
   getDataArt(){
     return this.http.get(this.artistApiUrl);
+  }
+
+  getDataArtV(){
+    return this.http.get(this.artistViewApiUrl);
   }
 
   getAlbums(){
@@ -43,6 +61,14 @@ export class AppComponent {
       console.log(dataAlb);
       this.dataAlb = dataAlb
       this.dataAlbBack = dataAlb;
+    })
+  }
+
+  getAlbumsV(){
+    this.getDataAlbV().subscribe(dataAlbV => {
+      console.log(dataAlbV);
+      this.dataAlbV = dataAlbV
+      this.dataAlbVBack = dataAlbV;
     })
   }
 
@@ -54,8 +80,20 @@ export class AppComponent {
     })
   }
 
+  getArtistsV(){
+    this.getDataArtV().subscribe(dataArtV => {
+      console.log(dataArtV);
+      this.dataArtV = dataArtV
+      this.dataArtVBack = dataArtV;
+    })
+  }
+
   displayStep(section:number){
     this.step=section;
+  }
+
+  displayMech(section:number){
+    this.mech=section;
   }
 
   sortAlbumName(){

@@ -1,6 +1,20 @@
-<div id="columns">
-  <figure *ngFor="let artist of artists">
-  <img src="assets/img/artists/{{artist.art_cover}}">
-  <figcaption> {{artist.art_nom}} <br> Origin: {{artist.art_pays}} <br> Genre: {{artist.art_genre}}</figcaption>
-	</figure>
+<button (click)="displayMech(1)">view</button>
+<button (click)="displayMech(2)">regular documents</button>
+
+<div *ngIf="mech==1">
+  <div id="columns">
+    <figure *ngFor="let artist of artists">
+    <img src="assets/img/artists/{{artist.art_cover}}">
+    <figcaption> {{artist.art_nom}} <br> Origin: {{artist.art_pays}} <br> Genre: {{artist.art_genre}}</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div *ngIf="mech==2">
+  <div id="columns">
+    <figure *ngFor="let artistV of artistsV">
+    <img src="assets/img/artists/{{artistV.art_cover}}">
+    <figcaption> {{artistV.art_nom}} <br> Origin: {{artistV.pay_libelle}} <br> Genre: {{artistV.gen_libelle}}</figcaption>
+    </figure>
+  </div>
 </div>

@@ -7,9 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
 
+  mech = 1;
+
   @Input() private albums: any;
+  @Input() private albumsV: any;
 
   constructor() { }
+
+  displayMech(section:number){
+    this.mech=section;
+  }
 
   ngOnInit() {
   }
