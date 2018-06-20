@@ -8,6 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardsAComponent implements OnInit {
 
   mech = 1;
+  albshow=0;
+  alb_artist:any;
+  index:any;
 
   @Input() private artists: any;
   @Input() private artistsV: any;
@@ -16,6 +19,11 @@ export class CardsAComponent implements OnInit {
 
   displayMech(section:number){
     this.mech=section;
+  }
+
+  displayAlbums(i:any){
+    this.alb_artist=this.artistsV[i].albums;
+    this.albshow=1;
   }
 
   ngOnInit() {

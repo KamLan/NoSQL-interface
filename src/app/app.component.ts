@@ -12,14 +12,18 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export class AppComponent {
   title = 'My NoSQL interface';
+  protected searchValue: string;
+  protected displayAlbums: Number = 1;
   private dataAlbBack: any;
   private dataAlbVBack: any;
   private dataArtBack: any;
   private dataArtVBack: any;
   private albumApiUrl="http://localhost:3000/albums";
   private artistApiUrl="http://localhost:3000/artists";
-  private albumViewApiUrl="http://localhost:3000/viewalb";
-  private artistViewApiUrl="http://localhost:3000/viewart";
+  //private albumViewApiUrl="http://localhost:3000/viewalb";
+  //private artistViewApiUrl="http://localhost:3000/viewart";
+  private artistViewApiUrl="http://localhost:3000/viewartimbri";
+  private albumViewApiUrl="http://localhost:3000/viewalbimbri";
   dataAlb: any = {};
   dataAlbV: any = {};
   dataArt: any = {};
@@ -58,7 +62,6 @@ export class AppComponent {
 
   getAlbums(){
     this.getDataAlb().subscribe(dataAlb => {
-      console.log(dataAlb);
       this.dataAlb = dataAlb
       this.dataAlbBack = dataAlb;
     })
@@ -66,7 +69,6 @@ export class AppComponent {
 
   getAlbumsV(){
     this.getDataAlbV().subscribe(dataAlbV => {
-      console.log(dataAlbV);
       this.dataAlbV = dataAlbV
       this.dataAlbVBack = dataAlbV;
     })
@@ -74,7 +76,6 @@ export class AppComponent {
 
   getArtists(){
     this.getDataArt().subscribe(dataArt => {
-      console.log(dataArt);
       this.dataArt = dataArt
       this.dataArtBack = dataArt;
     })
@@ -82,7 +83,6 @@ export class AppComponent {
 
   getArtistsV(){
     this.getDataArtV().subscribe(dataArtV => {
-      console.log(dataArtV);
       this.dataArtV = dataArtV
       this.dataArtVBack = dataArtV;
     })
@@ -103,7 +103,15 @@ export class AppComponent {
       const y = b.alb_nom.toLowerCase();
       return x < y ? -1 : x > y ? 1 : 0;
     })
-    this.dataAlb = nameAlb;
+    this.dataAlb = nameAlb; 
+
+    const nameAlbV = this.dataAlbV.slice(0);
+    nameAlbV.sort(function(a,b){
+      const x = a.alb_nom.toLowerCase();
+      const y = b.alb_nom.toLowerCase();
+      return x < y ? -1 : x > y ? 1 : 0;
+    })
+    this.dataAlbV = nameAlbV;
   }
 
   sortAlbumPrice(){
@@ -112,14 +120,28 @@ export class AppComponent {
       return a.alb_prix - b.alb_prix;
     });
     this.dataAlb = priceAlb;
+
+    const priceAlbV = this.dataAlbV.slice(0);
+    priceAlbV.sort(function(a, b) {
+      return a.alb_prix - b.alb_prix;
+    });
+    this.dataAlbV = priceAlbV;
   }
 
   sortAlbumYear(){
     const yearAlb = this.dataAlb.slice(0);
     yearAlb.sort(function(a, b) {
-      return a.alb_year - b.alb_year;
+      console.log(a);
+      return a.alb_annee - b.alb_annee;
     });
     this.dataAlb = yearAlb;
+
+    const yearAlbV = this.dataAlbV.slice(0);
+    yearAlbV.sort(function(a, b) {
+      console.log(a);
+      return a.alb_annee - b.alb_annee;
+    });
+    this.dataAlbV = yearAlbV;
   }
 
   sortArtistName(){
@@ -130,6 +152,14 @@ export class AppComponent {
       return x < y ? -1 : x > y ? 1 : 0;
     })
     this.dataArt = nameArt;
+
+    const nameArtV = this.dataArtV.slice(0);
+    nameArtV.sort(function(a,b){
+      const x = a.art_nom.toLowerCase();
+      const y = b.art_nom.toLowerCase();
+      return x < y ? -1 : x > y ? 1 : 0;
+    })
+    this.dataArtV = nameArtV;
   }
 
   sortArtistGenre(){
@@ -140,17 +170,26 @@ export class AppComponent {
       return x < y ? -1 : x > y ? 1 : 0;
     })
     this.dataArt = genreArt;
+
+    const genreArtV = this.dataArtV.slice(0);
+    genreArtV.sort(function(a,b){
+      const x = a.art_genre.toLowerCase();
+      const y = b.art_genre.toLowerCase();
+      return x < y ? -1 : x > y ? 1 : 0;
+    })
+    this.dataArtV = genreArtV;
   }
 
   protected search(value: string) {
     for (const i in this.dataAlb) {
-      if (this.dataAlb[i].alb_nom.toLowerCase() === value.toLowerCase() || this.dataAlb[i].art_nom.toLowerCase() === value.toLowerCase()) {
+      if (this.dataAlb[i].alb_nom.toLowerCase() === value.toLowerCase()) {
         const album = this.dataAlb[i]
         this.dataAlb = []
         this.dataAlb.push(album)
         return;
       }
     }
+
   }
 
   protected valueChange(value) {
@@ -161,6 +200,9 @@ export class AppComponent {
     this.search(value);
   }
 
+  protected toggleCards(val) {
+    this.displayAlbums = val;
+  }
 
 }
 

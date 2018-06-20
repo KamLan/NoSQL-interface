@@ -1,5 +1,5 @@
-<button (click)="displayMech(1)">view</button>
-<button (click)="displayMech(2)">regular documents</button>
+<button (click)="displayMech(1)">regular documents</button>
+<button (click)="displayMech(2)">Données imbriquées</button>
 
 <div *ngIf="mech==1">
   <div id="columns">
@@ -16,7 +16,7 @@
     <figure *ngFor="let albumV of albumsV">
     <img src="assets/img/covers/{{albumV.alb_picture}}">
     <figcaption>Title: {{albumV.alb_nom}} <br> Released in: {{albumV.alb_annee}} <br> Price: {{albumV.alb_prix}}$</figcaption>
-    <figcaption>Artist: {{albumV.art_nom}} <br> Genre: {{albumV.gen_libelle}} <br> Country: {{albumV.pay_libelle}}</figcaption>
+    <figcaption>Artist: {{albumV.artist.art_nom}} <br> Genre: {{albumV.gen_libelle}} <br> Country: {{albumV.artist.pay_libelle}}</figcaption>
     </figure>
   </div>
 </div>

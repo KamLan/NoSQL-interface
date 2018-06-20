@@ -1,5 +1,5 @@
-<button (click)="displayMech(1)">view</button>
-<button (click)="displayMech(2)">regular documents</button>
+<button (click)="displayMech(1)">regular documents</button>
+<button (click)="displayMech(2)">Données imbriquées</button>
 
 <div *ngIf="mech==1">
   <div id="columns">
@@ -12,9 +12,24 @@
 
 <div *ngIf="mech==2">
   <div id="columns">
-    <figure *ngFor="let artistV of artistsV">
-    <img src="assets/img/artists/{{artistV.art_cover}}">
-    <figcaption> {{artistV.art_nom}} <br> Origin: {{artistV.pay_libelle}} <br> Genre: {{artistV.gen_libelle}}</figcaption>
-    </figure>
+    <div>
+        <figure *ngFor="let artistV of artistsV; let i=index">
+          <img src="assets/img/artists/{{artistV.art_cover}}">
+          <figcaption> {{artistV.art_nom}} <br> Origin: {{artistV.pay_libelle}} <br> Genre: {{artistV.gen_libelle}} </figcaption>
+          <figcaption>
+            <button (click)="displayAlbums(i)">Show albums</button>
+            <div *ngIf="albshow==1">
+              <div> 
+                <p>{{artistV.albums.alb_nom}}</p>
+              </div>
+            </div>
+          </figcaption>  
+        </figure>
+          <div>
+            <div *ngFor="let alb of alb_artist">
+              <span>{{alb.alb_nom}}</span>
+            </div>
+          </div>
+    </div>
   </div>
 </div>

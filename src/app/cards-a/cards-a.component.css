@@ -24,6 +24,7 @@
        transition: opacity .4s ease-in-out;
      display: inline-block;
      column-break-inside: avoid;
+     position: relative;
    }
    
    div#columns figure img {
